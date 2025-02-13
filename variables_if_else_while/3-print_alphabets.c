@@ -13,20 +13,20 @@ int main(void)
         char letter;
 
         /* Loop through lowercase letters */
-        for (letter = 'a'; letter <= 'z'; letter++)
-        {
-                putchar(letter);
-        }
+	for (letter = 'a'; letter <= 'z'; letter++)
+	{
+		putchar(letter);
+	}
 
 	/* Loop through uppercase letters */
         for (letter = 'A'; letter <= 'Z'; letter++)
-        {
-                putchar(letter);
-        }
+	{
+		putchar(letter);
+	}
 
-        /* Print new line */
-        putchar('\n');
+	/* Print new line */
+	putchar('\n');
 
-        return (0);
+	return (0);
 
 }
