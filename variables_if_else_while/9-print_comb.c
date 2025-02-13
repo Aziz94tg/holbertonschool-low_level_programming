@@ -11,12 +11,12 @@
 int main(void)
 {
 	int num;
-	
+
 	/* Loop throgh numbers 0-9 */
 	for (num = 0; num <= 9; num++)
 	{
 		putchar(num + '0'); 
-	
+
 		/* Print comma and space for all except the last number */
 		if (num < 9)
 		{
