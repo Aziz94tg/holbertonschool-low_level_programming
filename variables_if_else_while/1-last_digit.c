@@ -3,7 +3,6 @@
 #include <stdio.h>
 
 /**
- * betty style doc for function main goes there
  * main - Entry point
  * Description: print the last digit of the number stored in the variable n
  * Return: always 0
