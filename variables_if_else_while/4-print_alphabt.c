@@ -21,7 +21,7 @@ int main(void)
 	}
 
 	/* Print newline */
-	putchar('\n');
+	putchar ('\n');
 
 	return(0);
 }
