@@ -1,14 +1,14 @@
-#include <stdlib.h> 
-#include <time.h> 
-#include <stdio.h> 
-/** 
- * main - Entry point 
- * Description: Generate a random number and print whether 
+#include <stdlib.h>
+#include <time.h>
+#include <stdio.h>
+/**
+ * main - Entry point
+ * Description: Generate a random number and print whether
  * it is positive, negative, or zero.
- * Return: always 0 
- */ 
-int main(void) 
-{ 
+ * Return: always 0
+ */
+int main(void)
+{
 	int n;
 
        	/* Random number generatior */
