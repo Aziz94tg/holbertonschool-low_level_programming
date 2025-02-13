@@ -10,16 +10,16 @@
 
 int main(void)
 {
-        char letter;
+	char letter;
 
-        /* Loop through lowercase letters */
+	/* Loop through lowercase letters */
 	for (letter = 'a'; letter <= 'z'; letter++)
 	{
 		putchar(letter);
 	}
 
 	/* Loop through uppercase letters */
-        for (letter = 'A'; letter <= 'Z'; letter++)
+	for (letter = 'A'; letter <= 'Z'; letter++)
 	{
 		putchar(letter);
 	}
