@@ -1,8 +1,8 @@
 #include "main.h"
 
  /**
-  *  _isalpha - checks for alphabetic character
-  *  @c: char to check
+  * _isalpha - checks for alphabetic character
+  * @c: char to check
  *
  * Description:
  *
