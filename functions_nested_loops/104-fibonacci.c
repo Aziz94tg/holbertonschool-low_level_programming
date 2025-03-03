@@ -31,7 +31,7 @@ void print_fibonacci_large(unsigned long int a, unsigned long int b)
     unsigned long int a_high, a_low, b_high, b_low, next_high, next_low;
     int count;
 
-    /* Split `a` and `b` into high and low parts */
+    /* Start from correct F(89) and F(90) */
     a_high = a / 1000000000;
     a_low = a % 1000000000;
     b_high = b / 1000000000;
@@ -48,7 +48,7 @@ void print_fibonacci_large(unsigned long int a, unsigned long int b)
             next_low -= 1000000000;
         }
 
-        /* ✅ Print the correct Fibonacci number */
+        /* ✅ Correct printing format (no leading zeros) */
         printf(", %lu%09lu", next_high, next_low);
 
         /* Update values for next Fibonacci number */
@@ -69,7 +69,7 @@ int main(void)
     unsigned long int a = 1, b = 2;
 
     print_fibonacci_normal(a, b); /* Print first 90 Fibonacci numbers */
-    print_fibonacci_large(a, b);  /* Print last 8 Fibonacci numbers */
+    print_fibonacci_large(2880067194370816120, 4660046610375530309);  /* Print last 8 Fibonacci numbers */
 
     printf("\n");
     return (0);
