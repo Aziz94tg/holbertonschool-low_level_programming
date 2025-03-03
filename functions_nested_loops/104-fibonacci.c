@@ -74,9 +74,11 @@ int main(void)
 {
 	unsigned long int a = 1, b = 2;
 
+
 	print_fibonacci_normal(a, b); /* ✅ Automatically prints F(91) - F(98) */
+
 
 	printf("\n");
 	return (0);
 }
- 
+
