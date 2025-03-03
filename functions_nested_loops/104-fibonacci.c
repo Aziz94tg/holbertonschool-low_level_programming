@@ -1,28 +1,56 @@
-#include <stdio.h>
+#include "main.h"
 
-int main(void) {
-    unsigned long a = 1, b = 2, next;
-    unsigned long a_high = 0, b_high = 0, next_high;
-    int i;
-
-    printf("%lu, %lu", a, b);
-
-    for (i = 2; i < 98; i++) {
-        next = a + b;
-        next_high = a_high + b_high;
-
-        if (next < a) {
-            next_high++;
-        }
-
-        printf(", %lu", next);
-
-        a_high = b_high;
-        a = b;
-        b_high = next_high;
-        b = next;
+/**
+ * print_number - Prints an integer using _putchar
+ * @n: The integer to print
+ */
+void print_number(int n)
+{
+    if (n < 0) {
+        _putchar('-');
+        n = -n;
     }
 
-    printf("\n");
-    return 0;
+    if (n / 10)
+        print_number(n / 10);
+
+    _putchar((n % 10) + '0');
+}
+
+/**
+ * main - Entry point
+ *
+ * Return: Always 0 (Success)
+ */
+int main(void)
+{
+    int count;
+    int fib1 = 1, fib2 = 2, fib_next;
+
+    print_number(fib1);
+    _putchar(',');
+    _putchar(' ');
+
+    print_number(fib2);
+    _putchar(',');
+    _putchar(' ');
+
+    for (count = 3; count <= 98; count++)
+    {
+        fib_next = fib1 + fib2;
+        print_number(fib_next);
+
+        if (count != 98)
+        {
+            _putchar(',');
+            _putchar(' ');
+        }
+
+        fib1 = fib2;
+        fib2 = fib_next;
+    }
+
+    _putchar('\n');
+
+    return (0);
 }
