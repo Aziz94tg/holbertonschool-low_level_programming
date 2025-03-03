@@ -47,7 +47,12 @@ void print_fibonacci_large(unsigned long int a, unsigned long int b)
 			next_low -= 1000000000;
 		}
 
-		printf(", %lu%09lu", next_high, next_low);
+		/* Fix leading zero issue */
+		if (next_high == 0) /* If high part is 0, print only low part */
+			printf(", %lu", next_low);
+		else /* Otherwise, print both high and low parts */
+			printf(", %lu%09lu", next_high, next_low);
+
 		a_high = b_high;
 		a_low = b_low;
 		b_high = next_high;
