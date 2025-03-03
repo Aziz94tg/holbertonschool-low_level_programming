@@ -1,5 +1,8 @@
 #include <stdio.h>
 
+/* ✅ Function Prototype */
+void print_fibonacci_large(unsigned long int a, unsigned long int b);
+
 /**
  * print_fibonacci_normal - Prints Fibonacci numbers from 1 to 90
  * @a: First number
@@ -19,6 +22,9 @@ void print_fibonacci_normal(unsigned long int a, unsigned long int b)
         a = b;  /* Move forward */
         b = next;
     }
+
+    /* ✅ Call next function to print large Fibonacci numbers */
+    print_fibonacci_large(a, b);
 }
 
 /**
@@ -31,7 +37,7 @@ void print_fibonacci_large(unsigned long int a, unsigned long int b)
     unsigned long int a_high, a_low, b_high, b_low, next_high, next_low;
     int count;
 
-    /* Start from correct F(89) and F(90) */
+    /* ✅ Extract `F(89)` and `F(90)` correctly */
     a_high = a / 1000000000;
     a_low = a % 1000000000;
     b_high = b / 1000000000;
@@ -48,10 +54,10 @@ void print_fibonacci_large(unsigned long int a, unsigned long int b)
             next_low -= 1000000000;
         }
 
-        /* ✅ Correct printing format (no leading zeros) */
+        /* ✅ Correct format (ensures no leading zeros) */
         printf(", %lu%09lu", next_high, next_low);
 
-        /* Update values for next Fibonacci number */
+        /* ✅ Update values for next Fibonacci number */
         a_high = b_high;
         a_low = b_low;
         b_high = next_high;
@@ -68,8 +74,7 @@ int main(void)
 {
     unsigned long int a = 1, b = 2;
 
-    print_fibonacci_normal(a, b); /* Print first 90 Fibonacci numbers */
-    print_fibonacci_large(2880067194370816120, 4660046610375530309);  /* Print last 8 Fibonacci numbers */
+    print_fibonacci_normal(a, b); /* ✅ Automatically prints F(91) - F(98) */
 
     printf("\n");
     return (0);
