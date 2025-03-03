@@ -1,23 +1,28 @@
 #include <stdio.h>
 
 int main(void) {
-    unsigned long a1 = 0, a2 = 1, b1 = 0, b2 = 2, next1, next2;
+    unsigned long a = 1, b = 2, next;
+    unsigned long a_high = 0, b_high = 0, next_high;
     int i;
 
-    printf("%lu, %lu, %lu, %lu", a2, b2, a2 + b2, a2 + 2 * b2);
+    printf("%lu, %lu", a, b);
 
-    for (i = 4; i < 98; i++) {
-        next1 = a1 + b1;
-        next2 = a2 + b2;
-        if (next2 < a2 || (next2 == a2 && next1 < a1)) {
-            next1++;
+    for (i = 2; i < 98; i++) {
+        next = a + b;
+        next_high = a_high + b_high;
+
+        if (next < a) {
+            next_high++;
         }
-        printf(", %lu", next2);
-        a1 = b1;
-        a2 = b2;
-        b1 = next1;
-        b2 = next2;
+
+        printf(", %lu", next);
+
+        a_high = b_high;
+        a = b;
+        b_high = next_high;
+        b = next;
     }
+
     printf("\n");
     return 0;
 }
