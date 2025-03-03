@@ -1,5 +1,15 @@
 #include "main.h"
-#include <stdio.h>
+
+/**
+ * print_number - Prints an integer using _putchar
+ * @num: The number to print
+ */
+void print_number(int num)
+{
+	if (num >= 10) /* Handle two-digit numbers */
+		print_number(num / 10);
+	_putchar((num % 10) + '0'); /* Print last digit */
+}
 
 /**
  * print_times_table - Prints the n times table, starting with 0
@@ -18,12 +28,21 @@ void print_times_table(int n)
 		{
 			product = row * col;
 
-			/* Print product with proper spacing */
-			if (col == 0)
-				printf("%d", product);
-			else
-				printf(", %3d", product); /* Format spacing for alignment */
+			if (col != 0) /* Formatting for spacing */
+			{
+				_putchar(',');
+				_putchar(' ');
+
+				/* Add extra space for proper alignment */
+				if (product < 10)
+					_putchar(' ');
+				if (product < 100)
+					_putchar(' ');
+			}
+
+			print_number(product); /* Print the number */
 		}
-		printf("\n"); /* Move to next line after each row */
+		_putchar('\n'); /* Move to next line after each row */
 	}
 }
+
