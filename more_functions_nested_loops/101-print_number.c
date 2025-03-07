@@ -6,15 +6,21 @@
  */
 void print_number(int n)
 {
-	if (n < 0) /* Handle negative numbers */
+	unsigned int num;
+
+	if (n < 0)
 	{
 		_putchar('-');
-		n = -n; /* Convert negative to positive */
+		num = -n; /* Convert to unsigned int to handle INT_MIN safely */
+	}
+	else
+	{
+		num = n;
 	}
 
-	if (n / 10) /* If number has more than 1 digit, print recursively */
-		print_number(n / 10);
+	if (num / 10) /* Print remaining digits */
+		print_number(num / 10);
 
-	_putchar((n % 10) + '0'); /* Print the last digit */
+	_putchar((num % 10) + '0'); /* Print last digit */
 }
 
