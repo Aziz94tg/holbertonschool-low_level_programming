@@ -7,23 +7,33 @@
  */
 int main(void)
 {
-    int i;
+	int i;
 
-    for (i = 1; i <= 100; i++)
-    {
-        if (i % 3 == 0 && i % 5 == 0) /* Multiple of both 3 and 5 */
-            printf("FizzBuzz");
-        else if (i % 3 == 0) /* Multiple of 3 */
-            printf("Fizz");
-        else if (i % 5 == 0) /* Multiple of 5 */
-            printf("Buzz");
-        else
-            printf("%d", i); /* Print the number */
+	for (i = 1; i <= 100; i++)
+	{
+		if (i % 3 == 0 && i % 5 == 0)
+		{
+			printf("FizzBuzz");
+		}
+		else if (i % 3 == 0)
+		{
+			printf("Fizz");
+		}
+		else if (i % 5 == 0)
+		{
+			printf("Buzz");
+		}
+		else
+		{
+			printf("%d", i);
+		}
 
-        if (i < 100)
-            printf(" "); /* Print a space between numbers */
-    }
+		if (i < 100)
+		{
+			printf(" ");
+		}
+	}
 
-    printf("\n"); /* Print a newline at the end */
-    return (0);
+	printf("\n");
+	return (0);
 }
