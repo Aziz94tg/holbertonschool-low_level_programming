@@ -23,4 +23,3 @@ void print_square(int size)
 		_putchar('\n'); /* If size <= 0, print only a newline */
 	}
 }
-
