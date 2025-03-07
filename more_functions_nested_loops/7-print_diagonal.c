@@ -23,4 +23,4 @@ void print_diagonal(int n)
 	{
 		_putchar('\n'); /* Print only a newline if n <= 0 */
 	}
-} 
+}
