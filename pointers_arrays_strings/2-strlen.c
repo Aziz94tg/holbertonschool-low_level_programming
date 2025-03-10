@@ -8,11 +8,13 @@
  */
 int _strlen(char *s)
 {
-    int len = 0; /* Counter to store length */
+	int len = 0; /* Use tab instead of spaces */
 
-    while (s[len] != '\0') /* Loop until the null terminator */
-    {
-        len++; /* Increment the counter */
-    }
-    return (len);
+	while (s[len] != '\0') /* Loop through the string */
+	{
+		len++; /* Increment counter */
+	}
+
+	return (len); /* Return the final count */
 }
+
