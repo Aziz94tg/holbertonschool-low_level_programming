@@ -7,10 +7,10 @@
  */
 void swap_int(int *a, int *b)
 {
-    int temp; /* Temporary variable to hold one value */
+	int temp; /* Temporary variable to hold one value */
 
-    temp = *a; /* Save the value of 'a' */
-    *a = *b;   /* Assign 'b' to 'a' */
-    *b = temp; /* Assign saved value to 'b' */
+	temp = *a; /* Save the value of 'a' */
+	*a = *b;   /* Assign 'b' to 'a' */
+	*b = temp; /* Assign saved value to 'b' */
 }
 
