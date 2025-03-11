@@ -2,7 +2,7 @@
 
 /**
  * puts_half - Print the second half of a string
- * @str: The string to be printed 
+ * @str: The string to be printed
  *
  * Return: void
  */
@@ -18,9 +18,9 @@ void puts_half(char *str)
 	/* Calculate the string index for the second half */
 	if (length % 2 == 0)
 	{
-		start = length /2;
+		start = length / 2;
 	}
-	else 
+	else
 	{
 		start = (length + 1) / 2;
 	}
@@ -29,5 +29,5 @@ void puts_half(char *str)
 	for (i = start; i < length; i++)
 		_putchar(str[i]);
 
-	_putchar('\n'); 
+	_putchar('\n');
 }
