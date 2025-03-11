@@ -8,13 +8,13 @@
  */
 void puts2(char *str)
 {
-    int i;
+	int i;
 
-    for (i = 0; str[i] != '\0'; i++)
-    {
-        if (i % 2 == 0) /* Print characters at even indices */
-            _putchar(str[i]);
-    }
-    _putchar('\n'); /* Print a newline at the end */
+	for (i = 0; str[i] != '\0'; i++)
+	{
+		if (i % 2 == 0) /* Print characters at even indices */
+			_putchar(str[i]);
+	}
+	_putchar('\n'); /* Print a newline at the end */
 }
 
