@@ -1,34 +1,33 @@
 #include "main.h"
 
 /**
- * _strcat - Concatenates two strings
- * @dest: The destination string
- * @src: The source string
- * 
- * Return: A pointer to the resulting string dest
+ * _strcat - Concatenates (joins) two strings
+ * @dest: The destination string (this will be modified)
+ * @src: The source string (this will be added to dest)
+ *
+ * Return: A pointer to the resulting string (dest)
  */
 char *_strcat(char *dest, char *src)
 {
-    int i = 0; /* Index for dest */
-    int j = 0; /* Index for src */
+	int i = 0; /* Find the end of dest */
+	int j = 0; /* Start at the beginning of src */
 
-    /* Find the end of the dest string */
-    while (dest[i] != '\0')
-    {
-        i++;
-    }
+	/* Find where dest ends */
+	while (dest[i] != '\0')
+	{
+		i++;
+	}
 
-    /* Append src to dest */
-    while (src[j] != '\0')
-    {
-        dest[i] = src[j];
-        i++;
-        j++;
-    }
+	/* Copy each character from src to dest */
+	while (src[j] != '\0')
+	{
+		dest[i] = src[j];
+		i++;
+		j++;
+	}
 
-    /* Add the terminating null byte */
-    dest[i] = '\0';
+	dest[i] = '\0'; /* Add null terminator */
 
-    return dest;
+	return (dest); /* Betty requires parentheses */
 }
 
