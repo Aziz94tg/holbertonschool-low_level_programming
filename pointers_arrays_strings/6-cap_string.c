@@ -10,7 +10,7 @@ char *cap_string(char *s)
 {
 	int i = 0;
 	int capitalize_next = 1; /* 1 = capitalize next letter */
-	int j; /* Declare variable outside the loop for C89 compatibility */
+	int j; /* Declare variable */
 
 	/* Characters that separate words */
 	char separators[] = " \t\n,;.!?\"(){}";
