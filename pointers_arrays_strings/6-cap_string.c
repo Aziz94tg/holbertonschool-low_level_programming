@@ -9,7 +9,8 @@
 char *cap_string(char *s)
 {
 	int i = 0;
-	int capitalize_next = 1; /* Flag: 1 = capitalize next letter */
+	int capitalize_next = 1; /* 1 = capitalize next letter */
+	int j; /* Declare variable outside the loop for C89 compatibility */
 
 	/* Characters that separate words */
 	char separators[] = " \t\n,;.!?\"(){}";
@@ -17,21 +18,21 @@ char *cap_string(char *s)
 	/* Loop through each character */
 	while (s[i] != '\0')
 	{
-		/* Capitalize letter if needed */
+		/* Capitalize if needed */
 		if (capitalize_next && (s[i] >= 'a' && s[i] <= 'z'))
 		{
 			s[i] = s[i] - ('a' - 'A'); /* Convert to uppercase */
 		}
 
-		/* Reset flag after checking a character */
+		/* Reset flag */
 		capitalize_next = 0;
 
-		/* Check if current character is a separator */
-		for (int j = 0; separators[j] != '\0'; j++)
+		/* Check for word separators */
+		for (j = 0; separators[j] != '\0'; j++)
 		{
 			if (s[i] == separators[j])
 			{
-				capitalize_next = 1; /* Next character should be capitalized */
+				capitalize_next = 1;
 				break;
 			}
 		}
