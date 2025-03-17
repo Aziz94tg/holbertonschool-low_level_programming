@@ -7,13 +7,15 @@
 
 void print_number(int n)
 {
+	unsigned int num;
+
 	if (n < 0) /* If negative print '-' */
 	{
 		_putchar('-');
-		n = -n;
+		num = -n;
 	}
-	if (n / 10) /* If more than one digit */
-		    print_number(n / 10);
+	if (num / 10) /* If more than one digit */
+		    print_number(num / 10);
 		
-		_putchar('0' + (n % 10));
+		_putchar('0' + (num % 10));
 }
