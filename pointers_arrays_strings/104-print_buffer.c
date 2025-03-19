@@ -8,33 +8,38 @@
  */
 void print_buffer(char *b, int size)
 {
-    int offset, byte;
+	int offset, byte;
 
-    if (size <= 0)
-    {
-        printf("\n");
-        return;
-    }
+	if (size <= 0)
+	{
+		printf("\n");
+		return;
+	}
 
-    for (offset = 0; offset < size; offset += 10)
-    {
-        printf("%08x: ", offset);
+	for (offset = 0; offset < size; offset += 10)
+	{
+		printf("%08x: ", offset);
 
-        for (byte = 0; byte < 10; byte++)
-        {
-            if (offset + byte < size)
-                printf("%02x", b[offset + byte]);
-            else
-                printf("  ");
+		for (byte = 0; byte < 10; byte++)
+		{
+			if (offset + byte < size)
+				printf("%02x", b[offset + byte]);
+			else
+				printf("  ");
 
-            if (byte % 2 == 1) /* Ensure correct spacing for 2-byte groups */
-                printf(" ");
-        }
+			if (byte % 2 == 1)
+				printf(" ");
+		}
 
-        for (byte = 0; byte < 10 && offset + byte < size; byte++)
-            printf("%c", (b[offset + byte] >= 32 && b[offset + byte] <= 126) ? b[offset + byte] : '.');
+		for (byte = 0; byte < 10 && offset + byte < size; byte++)
+		{
+			if (b[offset + byte] >= 32 && b[offset + byte] <= 126)
+				printf("%c", b[offset + byte]);
+			else
+				printf(".");
+		}
 
-        printf("\n");
-    }
+		printf("\n");
+	}
 }
 
