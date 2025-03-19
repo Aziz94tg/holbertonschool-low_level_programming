@@ -2,9 +2,9 @@
 #include <stdio.h>
 
 /**
- * print_buffer - Prints the content of a buffer.
- * @b: Buffer (array of bytes).
- * @size: Number of bytes to print.
+ * print_buffer - Prints a buffer in hex and ASCII format.
+ * @b: The buffer (array of bytes).
+ * @size: The number of bytes to print.
  */
 void print_buffer(char *b, int size)
 {
@@ -21,7 +21,15 @@ void print_buffer(char *b, int size)
         printf("%08x: ", offset);
 
         for (byte = 0; byte < 10; byte++)
-            printf((offset + byte < size) ? "%02x%s" : "   ", b[offset + byte], (byte % 2) ? " " : "");
+        {
+            if (offset + byte < size)
+                printf("%02x", b[offset + byte]);
+            else
+                printf("  ");
+
+            if (byte % 2 == 1) /* Ensure correct spacing for 2-byte groups */
+                printf(" ");
+        }
 
         for (byte = 0; byte < 10 && offset + byte < size; byte++)
             printf("%c", (b[offset + byte] >= 32 && b[offset + byte] <= 126) ? b[offset + byte] : '.');
