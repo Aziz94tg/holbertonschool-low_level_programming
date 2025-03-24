@@ -1,3 +1,12 @@
+#include "main.h"
+
+/**
+ * _strstr - finds the first time needle shows up in haystack
+ * @haystack: the big string to search in
+ * @needle: the small string to look for
+ *
+ * Return: pointer to the start of needle in haystack, or NULL
+ */
 char *_strstr(char *haystack, char *needle)
 {
 	int i, j;
@@ -19,3 +28,4 @@ char *_strstr(char *haystack, char *needle)
 
 	return (0);  /* if needle was not found */
 }
+
