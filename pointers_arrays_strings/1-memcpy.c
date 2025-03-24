@@ -10,15 +10,15 @@
  */
 char *_memcpy(char *dest, char *src, unsigned int n)
 {
-    unsigned int i;
+	unsigned int i;
 
-    /* Loop through each byte and copy it from src to dest */
-    for (i = 0; i < n; i++)
-    {
-        dest[i] = src[i];
-    }
+	/* Loop through each byte and copy it from src to dest */
+	for (i = 0; i < n; i++)
+	{
+		dest[i] = src[i];
+	}
 
-    /* Return the pointer to the destination */
-    return (dest);
+	/* Return the pointer to the destination */
+	return (dest);
 }
 
