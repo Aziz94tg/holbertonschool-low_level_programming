@@ -2,18 +2,17 @@
 #include <stdio.h>
 
 /**
- * main - Tests the rev_string function
+ * main - check the code
  *
  * Return: Always 0.
  */
 int main(void)
 {
-    char s[10] = "My School";
+    char *s = "hello, world";
+    char *f = "world";
+    char *t;
 
-    printf("%s\n", s); /* Print original string */
-    rev_string(s);     /* Reverse the string */
-    printf("%s\n", s); /* Print reversed string */
-
+    t = _strstr(s, f);
+    printf("%s\n", t);
     return (0);
 }
-
