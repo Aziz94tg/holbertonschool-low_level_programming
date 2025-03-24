@@ -19,4 +19,3 @@ char *_strstr(char *haystack, char *needle)
 
 	return (0);  /* if needle was not found */
 }
-
