@@ -25,7 +25,7 @@ void print_number(int n)
  */
 int main(int argc, char *argv[])
 {
-	int a, b;
+	int a;
 
 	if (argc != 3)
 	{
