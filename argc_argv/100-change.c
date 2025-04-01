@@ -2,6 +2,17 @@
 #include <stdlib.h>
 
 /**
+ * print_number - prints an integer using _putchar
+ * @n: number to print
+ */
+void print_number(int n)
+{
+	if (n / 10)
+		print_number(n / 10);
+	_putchar((n % 10) + '0');
+}
+
+/**
  * main - prints the minimum number of coins for change
  * @argc: argument count
  * @argv: argument vector
@@ -39,11 +50,8 @@ int main(int argc, char *argv[])
 		}
 	}
 
-	if (coins / 10)
-		_putchar((coins / 10) + '0');
-	_putchar((coins % 10) + '0');
+	print_number(coins);
 	_putchar('\n');
-
 	return (0);
 }
 
