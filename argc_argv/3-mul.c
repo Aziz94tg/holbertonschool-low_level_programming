@@ -2,34 +2,44 @@
 #include <stdlib.h>
 
 /**
+ * print_number - prints an integer
+ * @n: number to print
+ */
+void print_number(int n)
+{
+	if (n < 0)
+	{
+		_putchar('-');
+		n = -n;
+	}
+	if (n / 10)
+		print_number(n / 10);
+	_putchar((n % 10) + '0');
+}
+
+/**
  * main - multiplies two numbers
  * @argc: argument count
  * @argv: argument vector
- *
- * Return: 0 if success, 1 if error
+ * Return: 0 or 1
  */
 int main(int argc, char *argv[])
 {
-	int a, b, result;
-	int n;
+	int a, b;
 
 	if (argc != 3)
 	{
-		char error[] = "Error\n";
+		char e[] = "Error\n";
+		int i = 0;
 
-		for (n = 0; error[n] != '\0'; n++)
-			_putchar(error[n]);
+		while (e[i])
+			_putchar(e[i++]);
 		return (1);
 	}
 
-	a = atoi(argv[1]);
-	b = atoi(argv[2]);
-	result = a * b;
-
-	if (result / 10 != 0)
-		_putchar((result / 10) + '0');
-	_putchar((result % 10) + '0');
+	a = atoi(argv[1]) * atoi(argv[2]);
+	print_number(a);
 	_putchar('\n');
-
 	return (0);
 }
+
