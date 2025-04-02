@@ -11,10 +11,10 @@ int main(void)
 {
     char *s;
 
-    s = str_concat("Best ", "School");
+    s = _strdup("Duplicated");
     if (s == NULL)
     {
-        printf("failed\n");
+        printf("failed to allocate memory\n");
         return (1);
     }
     printf("%s\n", s);
