@@ -1,7 +1,7 @@
 #include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <unistd.h>
 /**
  * is_digit - checks if a string contains only digits
  * @s: the string
@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
 
 	if (argc != 3 || !is_digit(argv[1]) || !is_digit(argv[2]))
 	{
-		printf("Error\n");
+		write(2, "Error\n", 6);
 		exit(98);
 	}
 
