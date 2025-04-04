@@ -1,10 +1,10 @@
 #include "main.h"
-#include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 /**
  * is_digit - checks if a string contains only digits
- * @s: the string
+ * @s: input string
  * Return: 1 if all digits, 0 otherwise
  */
 int is_digit(char *s)
@@ -20,34 +20,37 @@ int is_digit(char *s)
 
 /**
  * _strlen - returns the length of a string
- * @s: the string
+ * @s: input string
  * Return: length
  */
 int _strlen(char *s)
 {
 	int len = 0;
+
 	while (s[len])
 		len++;
 	return (len);
 }
 
 /**
- * print_result - prints an array of digits as a number
- * @result: the array
- * @size: size of array
+ * print_result - prints an int array as a number
+ * @res: result array
+ * @size: size of the array
  */
-void print_result(int *result, int size)
+void print_result(int *res, int size)
 {
-	int i = 0;
+	int i = 0, started = 0;
 
-	while (i < size && result[i] == 0)
-		i++;
+	for (i = 0; i < size; i++)
+	{
+		if (res[i] != 0)
+			started = 1;
+		if (started)
+			_putchar(res[i] + '0');
+	}
 
-	if (i == size)
+	if (!started)
 		_putchar('0');
-
-	for (; i < size; i++)
-		_putchar(result[i] + '0');
 
 	_putchar('\n');
 }
@@ -56,15 +59,16 @@ void print_result(int *result, int size)
  * main - multiplies two positive numbers
  * @argc: argument count
  * @argv: argument vector
- * Return: 0 on success, 98 on failure
+ * Return: 0 on success, 98 on error
  */
 int main(int argc, char *argv[])
 {
-	int len1, len2, i, j, *result, total_len, n1, n2, carry;
+	int len1, len2, total_len, i, j, n1, n2, carry;
+	int *result;
 
 	if (argc != 3 || !is_digit(argv[1]) || !is_digit(argv[2]))
 	{
-		printf("Error\n");
+		write(2, "Error\n", 6);
 		exit(98);
 	}
 
@@ -72,13 +76,14 @@ int main(int argc, char *argv[])
 	len2 = _strlen(argv[2]);
 	total_len = len1 + len2;
 	result = calloc(total_len, sizeof(int));
-	if (result == NULL)
+	if (!result)
 		exit(98);
 
 	for (i = len1 - 1; i >= 0; i--)
 	{
 		n1 = argv[1][i] - '0';
 		carry = 0;
+
 		for (j = len2 - 1; j >= 0; j--)
 		{
 			n2 = argv[2][j] - '0';
