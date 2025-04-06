@@ -3,9 +3,8 @@
 
 /**
  * struct op - Struct op
- *
  * @op: The operator
- * @f: The function associated
+ * @f: The function associated with the operator
  */
 typedef struct op
 {
@@ -21,3 +20,4 @@ int op_mod(int a, int b);
 int (*get_op_func(char *s))(int, int);
 
 #endif
+
