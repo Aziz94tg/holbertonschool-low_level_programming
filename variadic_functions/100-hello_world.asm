@@ -1,19 +1,19 @@
 ; 100-hello_world.asm
 section .data
-    msg db "Hello, World", 10 ; The message + newline
-    len equ $ - msg          ; Calculate message length
+    msg db "Hello, World", 10      ; The message followed by newline
+    len equ $ - msg                ; Compute the length of the message
 
 section .text
     global _start
 
 _start:
-    mov rax, 1       ; syscall number for write
-    mov rdi, 1       ; file descriptor 1 (stdout)
-    mov rsi, msg     ; address of the string
-    mov rdx, len     ; number of bytes
-    syscall          ; make syscall
+    mov rax, 1         ; syscall: write
+    mov rdi, 1         ; file descriptor: stdout
+    mov rsi, msg       ; pointer to message
+    mov rdx, len       ; message length
+    syscall            ; invoke syscall
 
-    mov rax, 60      ; syscall number for exit
-    xor rdi, rdi     ; exit status 0
-    syscall
+    mov rax, 60        ; syscall: exit
+    xor rdi, rdi       ; status: 0
+    syscall            ; invoke syscall
 
