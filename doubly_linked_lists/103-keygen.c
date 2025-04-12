@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
 	key[5] = (sum_sq ^ 239) & 63;
 
 	for (i = 0; i < 6; i++)
-		printf("%c", alph[(unsigned int)key[i]]);
+		printf("%c", (int)alph[(int)key[i]]);
 	putchar('\n');
 	return (0);
 }
