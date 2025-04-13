@@ -2,78 +2,63 @@
 #include <stdlib.h>
 #include <string.h>
 
-char lookup[] = "A-CHRDw8H7lNS0E9BH2TibgpnMHVys5XzvtHOGJcYLU+H4mjW6fxqHZeF3Qa1rHPhdKIoukH";
-
-int f1(char *user)
+/**
+ * main - Generates a valid key for crackme5 given a username
+ * @argc: argument count
+ * @argv: argument vector
+ *
+ * Return: 0 on success
+ */
+int main(int argc, char *argv[])
 {
-	return ((int)strlen(user) ^ 0x3b) & 0x3f;
-}
-
-int f2(char *user)
-{
-	int sum = 0;
-	int i;
-	for (i = 0; user[i]; i++)
-		sum += user[i];
-	return (sum ^ 0x4f) & 0x3f;
-}
-
-int f3(char *user)
-{
-	int prod = 1;
-	int i;
-	for (i = 0; user[i]; i++)
-		prod *= user[i];
-	return (prod ^ 0x55) & 0x3f;
-}
-
-int f4(char *user)
-{
-	int max = user[0];
-	int i;
-	for (i = 1; user[i]; i++)
-		if (user[i] > max)
-			max = user[i];
-	srand(max ^ 0xe);
-	return rand() & 0x3f;
-}
-
-int f5(char *user)
-{
-	int sum = 0;
-	int i;
-	for (i = 0; user[i]; i++)
-		sum += user[i] * user[i];
-	return (sum ^ 0xef) & 0x3f;
-}
-
-int f6(char *user)
-{
-	int i, r = 0;
-	srand(user[0]);
-	for (i = 0; i < user[0]; i++)
-		r = rand();
-	return (r ^ 0xe5) & 0x3f;
-}
-
-int main(int ac, char **av)
-{
-	char *user;
+	char *username;
 	char key[7];
+	char *lookup = "A-CHRDw8H7lNS0E9BH2TibgpnMHVys5XzvtHOGJcYLU+H4mjW6fxqHZeF3Qa1rHPhdKIoukH";
+	int len, i, sum, prod, max, r;
 
-	if (ac != 2)
-	{
-		printf("Usage: %s username\n", av[0]);
+	if (argc != 2)
 		return (1);
-	}
-	user = av[1];
-	key[0] = lookup[f1(user)];
-	key[1] = lookup[f2(user)];
-	key[2] = lookup[f3(user)];
-	key[3] = lookup[f4(user)];
-	key[4] = lookup[f5(user)];
-	key[5] = lookup[f6(user)];
+
+	username = argv[1];
+	len = strlen(username);
+
+	/* f1: (len ^ 0x3b) & 0x3f */
+	key[0] = lookup[(len ^ 0x3b) & 0x3f];
+
+	/* f2: (sum of chars ^ 0x4f) & 0x3f */
+	sum = 0;
+	for (i = 0; i < len; i++)
+		sum += username[i];
+	key[1] = lookup[(sum ^ 0x4f) & 0x3f];
+
+	/* f3: (product of chars ^ 0x55) & 0x3f */
+	prod = 1;
+	for (i = 0; i < len; i++)
+		prod *= username[i];
+	key[2] = lookup[(prod ^ 0x55) & 0x3f];
+
+	/* f4: (rand() from max char ^ 0xe) & 0x3f */
+	max = username[0];
+	for (i = 1; i < len; i++)
+		if (username[i] > max)
+			max = username[i];
+	srand(max ^ 0xe);
+	key[3] = lookup[rand() & 0x3f];
+
+	/* f5: (sum of squares of chars ^ 0xef) & 0x3f */
+	sum = 0;
+	for (i = 0; i < len; i++)
+		sum += username[i] * username[i];
+	key[4] = lookup[(sum ^ 0xef) & 0x3f];
+
+	/* f6: (rand() after looping username[0] times ^ 0xe5) & 0x3f */
+	r = 0;
+	for (i = 0; i < username[0]; i++)
+		r = rand();
+	key[5] = lookup[(r ^ 0xe5) & 0x3f];
+
 	key[6] = '\0';
+
 	printf("%s\n", key);
 	return (0);
 }
