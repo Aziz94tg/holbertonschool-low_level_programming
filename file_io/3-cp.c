@@ -1,41 +1,35 @@
 #include "main.h"
-#include <stdio.h>
+#include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <fcntl.h>
+#include <stdio.h>
 
 /**
- * error_exit - Prints an error message to stderr and exits.
- * @code: Exit code.
- * @msg: Error message to print.
- * @filename: Optional file name.
+ * error_exit - Prints an error message and exits with a given code
+ * @code: The exit code
+ * @message: The error message to print
+ * @arg: Argument to print with the error
  */
-void error_exit(int code, const char *msg, const char *filename)
+void error_exit(int code, const char *message, const char *arg)
 {
-	if (filename)
-		dprintf(STDERR_FILENO, "%s %s\n", msg, filename);
-	else
-		dprintf(STDERR_FILENO, "%s\n", msg);
+	dprintf(STDERR_FILENO, "%s %s\n", message, arg);
 	exit(code);
 }
 
 /**
- * main - Copies the content of one file to another.
- * @argc: Argument count.
- * @argv: Argument vector.
- *
- * Return: 0 on success, exits with various codes on error.
+ * main - Copies the content of a file to another file
+ * @argc: Number of arguments
+ * @argv: Argument vector
+ * Return: 0 on success
  */
 int main(int argc, char *argv[])
 {
-	int fd_from, fd_to, r, w;
+	int fd_from, fd_to;
+	ssize_t r, w;
 	char buffer[1024];
 
 	if (argc != 3)
-	{
-		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
-		exit(97);
-	}
+		error_exit(97, "Usage: cp file_from file_to", "");
 
 	fd_from = open(argv[1], O_RDONLY);
 	if (fd_from == -1)
@@ -48,8 +42,15 @@ int main(int argc, char *argv[])
 		error_exit(99, "Error: Can't write to", argv[2]);
 	}
 
-	while ((r = read(fd_from, buffer, 1024)) > 0)
+	while ((r = read(fd_from, buffer, 1024)) != 0)
 	{
+		if (r == -1)
+		{
+			close(fd_from);
+			close(fd_to);
+			error_exit(98, "Error: Can't read from file", argv[1]);
+		}
+
 		w = write(fd_to, buffer, r);
 		if (w != r)
 		{
@@ -57,13 +58,6 @@ int main(int argc, char *argv[])
 			close(fd_to);
 			error_exit(99, "Error: Can't write to", argv[2]);
 		}
-	}
-
-	if (r == -1)
-	{
-		close(fd_from);
-		close(fd_to);
-		error_exit(98, "Error: Can't read from file", argv[1]);
 	}
 
 	if (close(fd_from) == -1)
