@@ -9,7 +9,7 @@
 /**
  * error_exit - Prints an error message to stderr and exits.
  * @code: Exit code.
- * @message: Error message.
+ * @message: Error message to print.
  * @file: Filename to include in the message.
  */
 void error_exit(int code, const char *message, const char *file)
@@ -19,22 +19,20 @@ void error_exit(int code, const char *message, const char *file)
 }
 
 /**
- * main - Entry point. Copies content of one file to another.
+ * main - Copies the content of one file to another.
  * @argc: Argument count.
  * @argv: Argument vector.
  *
- * Return: 0 on success, exits with error code on failure.
+ * Return: 0 on success, or exits with code on failure.
  */
 int main(int argc, char *argv[])
 {
-	int fd_from, fd_to, read_bytes, written_bytes;
+	int fd_from, fd_to;
+	ssize_t read_bytes, written_bytes;
 	char buffer[BUFFER_SIZE];
 
 	if (argc != 3)
-	{
-		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
-		exit(97);
-	}
+		error_exit(97, "Usage: cp file_from file_to", "");
 
 	fd_from = open(argv[1], O_RDONLY);
 	if (fd_from == -1)
@@ -42,16 +40,28 @@ int main(int argc, char *argv[])
 
 	fd_to = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, 0664);
 	if (fd_to == -1)
+	{
+		close(fd_from);
 		error_exit(99, "Error: Can't write to", argv[2]);
+	}
 
 	while ((read_bytes = read(fd_from, buffer, BUFFER_SIZE)) > 0)
 	{
 		written_bytes = write(fd_to, buffer, read_bytes);
 		if (written_bytes != read_bytes)
+		{
+			close(fd_from);
+			close(fd_to);
 			error_exit(99, "Error: Can't write to", argv[2]);
+		}
 	}
+
 	if (read_bytes == -1)
+	{
+		close(fd_from);
+		close(fd_to);
 		error_exit(98, "Error: Can't read from file", argv[1]);
+	}
 
 	if (close(fd_from) == -1)
 	{
